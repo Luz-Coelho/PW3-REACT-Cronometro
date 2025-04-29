@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+function TimerApp() {
   const [temporizador, setTemporizador] = useState(0);
   const [status, setStatus] = useState(false);
   const [lista, setLista] = useState([]);
@@ -47,7 +48,6 @@ function App() {
   };
 
   return (
-    <>
     <div className="clContainer">
       <input type="text" placeholder="Digite seu nome aqui" id="inputNome" value={nome} onChange={registrarNome} />
 
@@ -71,7 +71,26 @@ function App() {
         </div>      
       </div>
     </div>
-    </>
+  )
+}
+
+function Home() {
+  return (
+    <div>
+      <h1>Bem-vindo ao Cronômetro</h1>
+      <p>Navegue para a página do cronômetro para começar</p>
+    </div>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter basename="/PW3-REACT-Cronometro">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/timer" element={<TimerApp />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
